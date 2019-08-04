@@ -2,6 +2,6 @@ class HomeController < ApplicationController
   def index
     @transactions = Transaction.all
     @users = User.all
-    @admins = Admin.all
+    @admin = Admin.all
   end
 end

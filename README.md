@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# README
+# Expense Reporting
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -21,8 +20,3 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
-=======
-# ExpenseReporting
->>>>>>> 75cebf08199405e2a3482f087b88df89ff762dca
