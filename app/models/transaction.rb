@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
+  belongs_to :user
   validates :date, presence: true
-  validate :is_valid_date
 
   private
 

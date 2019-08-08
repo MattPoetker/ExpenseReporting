@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_035559) do
+ActiveRecord::Schema.define(version: 2019_08_08_145017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,27 @@ ActiveRecord::Schema.define(version: 2019_08_01_035559) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "transaction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["transaction_id"], name: "index_comments_on_transaction_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", default: 1, null: false
+    t.index ["user_id"], name: "index_organizations_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.date "date"
-    t.string "departement"
     t.float "amount"
     t.string "currency"
     t.boolean "covered"
@@ -37,6 +55,8 @@ ActiveRecord::Schema.define(version: 2019_08_01_035559) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", default: 1, null: false
+    t.string "transaction_status", default: "Submitted", null: false
+    t.string "department", default: "Other", null: false
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -53,5 +73,8 @@ ActiveRecord::Schema.define(version: 2019_08_01_035559) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "transactions"
+  add_foreign_key "comments", "users"
+  add_foreign_key "organizations", "users"
   add_foreign_key "transactions", "users"
 end
