@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Departement:</strong>
-  <%= @transaction.departement %>
+  <strong>Department:</strong>
+  <%= @transaction.department %>
 </p>
 
 <p>
@@ -28,6 +28,10 @@
 <p>
   <strong>Description:</strong>
   <%= @transaction.description %>
+</p>
+<p>
+  <strong>Created by:</strong>
+  <%= @transaction.user.email %>
 </p>
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |

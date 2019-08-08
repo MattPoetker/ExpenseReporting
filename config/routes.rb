@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   devise_scope :admin do
     get '/admin/signup', to: 'devise/registrations#new', as: 'admin_signup'
   end
-
+  get '/dashboard' => 'home#index'
   root 'home#index'
 
 end
