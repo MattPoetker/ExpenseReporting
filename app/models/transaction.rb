@@ -1,5 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :user
+  belongs_to :organization
   validates :date, presence: true
   validates :currency, presence: true
   validates :amount, presence: true, numericality: true
