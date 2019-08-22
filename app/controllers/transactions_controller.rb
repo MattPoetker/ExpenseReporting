@@ -24,8 +24,10 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
+
     @transaction = Transaction.new(transaction_params)
     @transaction.user = current_user
+    @transaction.organization = current_user.organization
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, success: 'Transaction was successfully created.' }
@@ -69,6 +71,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:date, :departement, :amount, :currency, :covered, :description)
+      params.require(:transaction).permit(:date, :department, :amount, :currency, :covered, :description, :organization)
     end
 end

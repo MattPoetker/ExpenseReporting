@@ -3,5 +3,6 @@ class HomeController < ApplicationController
     @transactions = Transaction.all
     @users = User.all
     @admin = Admin.all
+    @organizations = Organization.all
   end
 end

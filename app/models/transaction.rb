@@ -7,6 +7,13 @@ class Transaction < ApplicationRecord
   validates :description, presence: true
   validate :is_valid_date
 
+  def covered?
+    if self.covered
+      return "Yes"
+    else
+      return "No"
+    end
+  end
   private
 
   def is_valid_date

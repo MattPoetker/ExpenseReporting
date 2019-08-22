@@ -4,6 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   after_action :custom_welcome, :only => [:create]
   after_action :custom_goodbye, :only => [:destroy]
+  skip_before_action :ensure_subdomain
 
   def custom_welcome
     flash[:notice] = nil
@@ -22,9 +23,9 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy
