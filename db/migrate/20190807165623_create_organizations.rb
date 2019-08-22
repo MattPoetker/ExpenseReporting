@@ -6,6 +6,6 @@ class CreateOrganizations < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_reference :organizations, :user, foreign_key: true, default: 1, null: false
+    add_reference :organizations, :user, foreign_key: true
   end
 end

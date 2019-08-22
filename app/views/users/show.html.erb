@@ -1,0 +1,8 @@
+<p>Name: <%= @user.name %></p>
+<p>Email: <%= @user.email %></p>
+
+<p>Transactions</p>
+ <% @user.transactions.each do |t| %>
+ <p>Amount: <%= t.amount %></p>
+ <% end %>
+<p>Number of Transactions: <%= @user.transactions.count %></p>

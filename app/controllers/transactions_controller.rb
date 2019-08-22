@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :ensure_org_setup
   # GET /transactions
   # GET /transactions.json
   def index
@@ -24,6 +25,7 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
+
     @transaction = Transaction.new(transaction_params)
     @transaction.user = current_user
     respond_to do |format|
@@ -66,9 +68,13 @@ class TransactionsController < ApplicationController
     def set_transaction
       @transaction = Transaction.find(params[:id])
     end
-
+    def ensure_org_setup
+      if !current_user.organization
+        redirect_to '/setup', error: 'You must setup your organization first.'
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:date, :departement, :amount, :currency, :covered, :description)
+      params.require(:transaction).permit(:date, :department, :amount, :currency, :covered, :description)
     end
 end
