@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_org
-    @current_org = Organization.find(current_user.organization_id)
+    @current_org = current_user.organization
   end
   helper_method :current_org
 

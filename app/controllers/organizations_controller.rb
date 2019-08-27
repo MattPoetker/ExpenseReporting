@@ -10,8 +10,11 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(org_params)
     if @organization.save
       current_user.organization = @organization
-      current_user.save
-      redirect_to '/dashboard'
+      if current_user.save
+        redirect_to '/dashboard'
+      else
+        render 'users/setup'
+      end
 
     else
       render 'users/setup'
