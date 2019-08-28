@@ -2,12 +2,8 @@
   <h1>Dashboard</h1>
   <div class="row">
     <div class="col">
-      <h2>Current User: <%= current_user.email %></h2>
-      <h2>Organizations</h2>
-      <% @organizations.each do |o| %>
-      <%= o.name %>
-      <% end %>
-      <h2>Current Organization: <%= @current_org.name %></h2>
+      <p>Current User: <%= current_user.email %></p>
+      <p>Current Organization: <%= current_user.organization.name %></p>
 
     </div>
     <div class="col">
@@ -73,7 +69,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td><%= user.organization.name %></td>
+        <td><%= user.name %></td>
 
       </tr>
     <% end %>

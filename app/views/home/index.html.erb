@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
-  <%= render 'dashboard' %>
+  <% if user_is_admin? %>
+    <%= render 'dashboard' %>
+  <% else %>
+    <%= render 'user' %>
+  <% end %>
 <% else %>
   <%= render 'home' %>
 <% end %>
