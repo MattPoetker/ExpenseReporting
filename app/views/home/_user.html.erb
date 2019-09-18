@@ -1,0 +1,82 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  <div class="row">
+    <div class="col">
+      <p>Current User: <%= current_user.email %></p>
+      <p>Current Organization: <%= current_user.organization.name %></p>
+
+    </div>
+    <div class="col">
+      <h2>Transactions</h2>
+      <table class="table table-sm mb-0 table-dashboard fs--1 data-table border-bottom" data-options='{"responsive":false,"pagingType":"simple","lengthChange":false,"searching":false,"pageLength":8,"columnDefs":[{"targets":[0,6],"orderable":false}],"language":{"info":"_START_ to _END_ Items of _TOTAL_ — <a href=\"#!\" class=\"font-weight-semi-bold\"> view all <span class=\"fas fa-angle-right\" data-fa-transform=\"down-1\"></span> </a>"},"dom":"<&#39;row mx-1&#39;<&#39;col-sm-12 col-md-6&#39;l><&#39;col-sm-12 col-md-6&#39;f>><&#39;table-responsive&#39;tr><&#39;row no-gutters px-1 py-3 align-items-center&#39;<&#39;col pl-3&#39;i><&#39;col-auto pr-3&#39;p>>"}'>
+                  <thead class="bg-200 text-900">
+                    <tr>
+                      <th class="no-sort pr-1 align-middle">
+                        <div class="custom-control custom-checkbox ml-3"><input class="custom-control-input checkbox-bulk-select" id="checkbox-bulk-purchases-select" type="checkbox" data-checkbox-body="#purchases" data-checkbox-actions="#purchases-actions" data-checkbox-replaced-element="#dashboard-actions" /><label class="custom-control-label" for="checkbox-bulk-purchases-select"></label></div>
+                      </th>
+                      <th class="sort pr-1 align-middle">Department</th>
+                      <th class="sort pr-1 align-middle">User</th>
+                      <th class="sort pr-1 align-middle">Description</th>
+                      <th class="sort pr-1 align-middle text-center">Status</th>
+                      <th class="sort pr-1 align-middle text-right">Amount</th>
+                      <th class="sort pr-1 align-middle text-right">Currency</th>
+                      <th class="sort pr-1 align-middle">Covered?</th>
+                      <th class="no-sort pr-1 align-middle"></th>
+                    </tr>
+                  </thead>
+      <tbody id="purchases">
+        <% @transactions.each do |transaction| %>
+                    <tr class="btn-reveal-trigger">
+                      <td class="align-middle">
+                        <div class="custom-control custom-checkbox ml-3"><input class="custom-control-input checkbox-bulk-select-target" type="checkbox" id="checkbox-0" /><label class="custom-control-label" for="checkbox-0"></label></div>
+                      </td>
+                      <th class="align-middle"><%= transaction.department %></th>
+                      <td class="align-middle"><%= link_to transaction.user.name, user_path(transaction.user) %></td>
+                      <td class="align-middle"><%= transaction.description %></td>
+                      <td class="align-middle text-center fs-0"><span class="badge badge rounded-capsule badge-soft-success"><%= transaction.transaction_status %><span class="ml-1 fas fa-check" data-fa-transform="shrink-2"></span></span></td>
+                      <td class="align-middle text-right"><%= transaction.amount %></td>
+                      <td class="align-middle text-right"><%= transaction.currency %></td>
+                      <td class="align-middle"><%= transaction.covered? %></td>
+                      <td class="align-middle white-space-nowrap">
+                        <div class="dropdown text-sans-serif"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
+                          <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                            <div class="bg-white py-2"><%= link_to 'View', transaction, class: "dropdown-item" %><%= link_to 'Edit', edit_transaction_path(transaction), class: "dropdown-item" %><a class="dropdown-item" href="#!">Refund</a>
+                              <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="#!">Archive</a><a class="dropdown-item text-danger" href="#!">Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+      <% end %>
+      </tbody>
+      </table>
+      <%= link_to 'New Transaction', new_transaction_path %>
+    </div>
+  </div>
+
+
+<h2>Users</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New User', signup_path %>
+
+</div>
