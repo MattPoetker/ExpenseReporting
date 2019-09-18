@@ -69,14 +69,16 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td><%= user.name %></td>
-
+        <td><%= user.name %>
+        <% if !user.invitation_accepted_at %>
+        <span class="badge badge-danger">Pending</span><%= link_to "Resend", resend_path(:user => user), :method => :post %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'New User', signup_path %>
+<%= link_to 'Invite User', new_user_invitation_path %>
 
 </div>
