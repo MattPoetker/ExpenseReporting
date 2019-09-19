@@ -4,7 +4,31 @@
     <div class="col">
       <p>Current User: <%= current_user.email %></p>
       <p>Current Organization: <%= current_user.organization.name %></p>
+      <h2>Users</h2>
 
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.email %></td>
+              <td><%= user.name %>
+              <% if !user.invitation_accepted_at %>
+              <span class="badge badge-danger">Pending</span><%= link_to "Resend", resend_path(:user => user), :method => :post %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+      <%= link_to 'Invite User', new_user_invitation_path %>
     </div>
     <div class="col">
       <h2>Transactions</h2>
@@ -33,38 +57,10 @@
                     </tr>
                   </thead>
       <tbody id="purchases">
-        <%= render 'home/transactions' %>
+        <%= render 'home/shared/transactions' %>
       </tbody>
       </table>
       <%= link_to 'New Transaction', new_transaction_path %>
     </div>
   </div>
-
-
-<h2>Users</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.name %>
-        <% if !user.invitation_accepted_at %>
-        <span class="badge badge-danger">Pending</span><%= link_to "Resend", resend_path(:user => user), :method => :post %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<%= link_to 'Invite User', new_user_invitation_path %>
-
 </div>

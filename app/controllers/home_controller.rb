@@ -7,8 +7,7 @@ class HomeController < ApplicationController
     elsif current_user
       @transactions = current_user.transactions
     end
-    @users = User.all
-    @organizations = Organization.all
+    @users = current_user.organization.users if current_user
   end
 
   private
