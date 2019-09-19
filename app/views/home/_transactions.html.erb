@@ -1,0 +1,23 @@
+<% @transactions.each do |transaction| %>
+            <tr class="btn-reveal-trigger">
+              <td class="align-middle">
+                <div class="custom-control custom-checkbox ml-3"><input class="custom-control-input checkbox-bulk-select-target" type="checkbox" id="checkbox-0" /><label class="custom-control-label" for="checkbox-0"></label></div>
+              </td>
+              <th class="align-middle"><%= transaction.department %></th>
+              <td class="align-middle"><%= link_to transaction.user.name, user_path(transaction.user) %></td>
+              <td class="align-middle"><%= transaction.description %></td>
+              <td class="align-middle text-center fs-0"><span class="badge <%= transaction_status(transaction)%>"><%= transaction.transaction_status %></td>
+              <td class="align-middle text-right"><%= transaction.amount %></td>
+              <td class="align-middle text-right"><%= transaction.currency %></td>
+              <td class="align-middle"><%= transaction.covered? %></td>
+              <td class="align-middle white-space-nowrap">
+                <div class="dropdown text-sans-serif"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal mr-3" type="button" id="dropdown0" data-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--1"></span></button>
+                  <div class="dropdown-menu dropdown-menu-right border py-0" aria-labelledby="dropdown0">
+                    <div class="bg-white py-2"><%= link_to 'View', transaction, class: "dropdown-item" %><%= link_to 'Edit', edit_transaction_path(transaction), class: "dropdown-item" %><a class="dropdown-item" href="#!">Refund</a>
+                      <div class="dropdown-divider"></div><a class="dropdown-item text-warning" href="#!">Archive</a><a class="dropdown-item text-danger" href="#!">Delete</a>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+<% end %>
