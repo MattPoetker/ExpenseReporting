@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :organizations
   resources :transactions
+  #resources :users
+  get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
+  patch 'users/:id', to: 'users#update'
   devise_for :users, controllers: {
         sessions: 'users/sessions',
         passwords: 'users/passwords',
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/signup', to: 'users/registrations#new', as: 'signup'
     post '/resend', to: 'users/invitations#resend', as: 'resend'
+    put 'users' => 'devise/registrations#update'
     resources :users, :only => [:show]
   end
 
