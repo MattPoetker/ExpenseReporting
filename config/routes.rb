@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get '/signup', to: 'users/registrations#new', as: 'signup'
     post '/resend', to: 'users/invitations#resend', as: 'resend'
     put 'users' => 'devise/registrations#update'
-    resources :users, :only => [:show]
+    resources :users, :only => [:show, :index]
   end
 
   devise_scope :admin do

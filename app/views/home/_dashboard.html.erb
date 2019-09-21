@@ -1,39 +1,5 @@
-<div class="container">
-  <h1>Dashboard</h1>
-  <div class="row">
-    <div class="col">
-      <p>Current User: <%= current_user.email %></p>
-      <p>Current Organization: <%= current_user.organization.name %></p>
-      <h2>Users</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= link_to "Edit", edit_user_path(user) %></td>
-              <td><%= user.email %></td>
-              <td>
-              <% if !user.invitation_accepted_at %>
-              <span class="badge badge-danger">Pending</span><%= link_to "Resend", resend_path(:user => user), :method => :post %></td>
-              <% end %>
-              <% if user.admin? %>
-              <span class="badge badge-success">Admin</span></td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <br>
-      <%= link_to 'Invite User', new_user_invitation_path %>
-    </div>
+<div class="row">
+      <%= render 'layouts/sidebar' %>
     <div class="col">
       <h2>Transactions</h2>
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,14 +16,15 @@
                       <th class="no-sort pr-1 align-middle">
                         <div class="custom-control custom-checkbox ml-3"><input class="custom-control-input checkbox-bulk-select" id="checkbox-bulk-purchases-select" type="checkbox" data-checkbox-body="#purchases" data-checkbox-actions="#purchases-actions" data-checkbox-replaced-element="#dashboard-actions" /><label class="custom-control-label" for="checkbox-bulk-purchases-select"></label></div>
                       </th>
+                      <th class="sort pr-1 align-middle">Date</th>
                       <th class="sort pr-1 align-middle">Department</th>
                       <th class="sort pr-1 align-middle">User</th>
                       <th class="sort pr-1 align-middle">Description</th>
                       <th class="sort pr-1 align-middle text-center">Status</th>
                       <th class="sort pr-1 align-middle text-right">Amount</th>
                       <th class="sort pr-1 align-middle text-right">Currency</th>
-                      <th class="sort pr-1 align-middle">Covered?</th>
-                      <th class="no-sort pr-1 align-middle"></th>
+                      <th class="sort pr-1 align-middle">Reimbursable</th>
+                      <th class="no-sort pr-1 align-middle">Edit</th>
                     </tr>
                   </thead>
       <tbody id="purchases">

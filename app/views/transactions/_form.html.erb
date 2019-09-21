@@ -24,9 +24,11 @@
   <div class="form-group">
 
     <%= form.label :amount %>
-    <div class="input-group-prepend">
-          <div class="input-group-text">$</div>
-    <%= form.text_field :amount %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <%= form.text_field :amount %>
     </div>
   </div>
 

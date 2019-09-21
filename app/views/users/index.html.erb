@@ -1,0 +1,10 @@
+<% current_org.users.each do |user| %>
+<ul>
+  <li><%= user.email %>
+  <% if user.admin? %>
+    <span class="badge badge-success">Admin</span>
+  <% end %>
+  </li>
+</ul>
+<% end %>
+<%= link_to "Invite User", new_user_invitation_path %>

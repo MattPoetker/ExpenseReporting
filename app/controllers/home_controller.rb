@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :set_current_org
   def index
     if user_is_admin? && current_user
-      @transactions = current_user.organization.transactions
+      @transactions = current_user.organization.transactions.order("date DESC")
     elsif current_user
       @transactions = current_user.transactions
     end

@@ -1,0 +1,24 @@
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <%= current_user.email %>
+        <% if current_user.admin? %>
+        <span class="badge badge-success">Admin</span></td>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Dashboard", "/" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "People", users_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Transactions", transactions_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Reports", "#" %>
+      </li>
+    </ul>
+  </div>
+</nav>
