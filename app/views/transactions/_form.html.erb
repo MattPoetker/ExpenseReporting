@@ -11,32 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :date %>
     <%= form.date_select :date %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :department %>
-    <%= form.text_field :department %>
+    <%= form.select :department, ['Kids', 'Hospitality', 'Media', 'Pastoral', 'Other'] %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
+
     <%= form.label :amount %>
+    <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
     <%= form.text_field :amount %>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :currency %>
-    <%= form.text_field :currency %>
+    <%= form.select :currency, ['CAD', 'USD']%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :covered %>
     <%= form.check_box :covered %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>

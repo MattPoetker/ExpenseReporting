@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :organizations
   resources :transactions
+  get '/transactions/:id/update_status', to: 'transactions#edit_status', as: 'edit_status'
+  patch '/transactions/:id/update_status', to: 'transactions#update_status', as: 'update_status'
   #resources :users
   get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch 'users/:id', to: 'users#update'
@@ -30,8 +32,6 @@ Rails.application.routes.draw do
     get '/admin/signup', to: 'devise/registrations#new', as: 'admin_signup'
   end
   get '/dashboard' => 'home#index'
-  get '/setup', to: 'users#setup', as: 'setup'
-  post '/setup', to: 'organizations#create'
   root 'home#index'
 
 end

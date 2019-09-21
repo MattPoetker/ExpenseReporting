@@ -1,0 +1,10 @@
+<%= simple_form_for @transaction, :url => url_for(:controller => 'transactions', :action => 'update_status') do |form| %>
+  <div class="form-group">
+    <%= form.label :transaction_status %>
+    <%= form.select :transaction_status, ['On Hold', 'Verified', 'Paid', 'Arhived'] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

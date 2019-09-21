@@ -33,6 +33,10 @@
   <strong>Created by:</strong>
   <%= @transaction.user.email %>
 </p>
+<p>
+  <strong>Transaction Status:</strong>
+  <span class="badge <%= transaction_status(@transaction) %>"><%= @transaction.transaction_status %></span>
+</p>
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>

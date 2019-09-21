@@ -6,11 +6,18 @@ class Transaction < ApplicationRecord
   validates :description, presence: true
   validate :is_valid_date
 
-  def covered?
+  def covered? #### move into transaction helper module ####
     if self.covered
       return "Yes"
     else
       return "No"
+    end
+  end
+  def editable
+    if self.transaction_status == 'Verified' || self.transaction_status == 'Paid'
+      return false
+    else
+      return true
     end
   end
   private
